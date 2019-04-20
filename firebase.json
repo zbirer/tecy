@@ -1,6 +1,6 @@
 {
-    "functions": {
-        "source": "./",
-        "function": "api"
-    }
+  "functions": {
+    "source": "./",
+    "function": "api"
+  }
 }
