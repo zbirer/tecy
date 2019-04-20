@@ -16,11 +16,10 @@ var familiesCollection = db.collection('families');
 router.get('/', async (req, res, next) => {
     if (req.query.region) {
         var snapshot = await familiesCollection.where('region', '==', req.query.region).get();
-        res.send(snapshot.docs.map((doc) => doc.data()));
     } else {
         var snapshot = await familiesCollection.get();
-        res.send(snapshot.docs.map((doc) => doc.data()));
     }
+    res.send(snapshot.docs.map((doc) => doc.data()));
 });
 
 router.post('/addfamily/', familyCreateValidator(), async (req, res, next) => {
