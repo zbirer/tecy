@@ -1,4 +1,3 @@
-/* eslint-disable require-jsdoc */
 const check = require('express-validator/check');
 
 // Enum representation of the 7 districs of israel, taken from: https://en.wikipedia.org/wiki/Districts_of_Israel
@@ -17,19 +16,16 @@ const baseBody = [
   check.body('is_host').isBoolean(),
 ];
 
-function familyCreate() {
-  return [...baseBody,
-    check.body('email').isEmail(),
-    check.body('phone_number').isLength({
-      min: 9,
-      max: 13,
-    }).isNumeric(),
-  ];
-}
+const familyCreate = [...baseBody,
+  check.body('email').isEmail(),
+  check.body('phone_number').isLength({
+    min: 9,
+    max: 13,
+  }).isNumeric(),
+];
 
-function familyUpdate() {
-  return [...baseBody, check.header('token').exists()];
-};
+const familyUpdate = [...baseBody, check.header('token').exists()];
+
 
 module.exports = {
   familyCreate,

@@ -24,7 +24,7 @@ router.get('/', async (req, res, next) => {
   res.send(snapshot.docs.map((doc) => doc.data()));
 });
 
-router.post('/addfamily/', validators.familyCreate(),
+router.post('/addfamily/', validators.familyCreate,
     async (req, res, next) => {
       const errors = check.validationResult(req);
       if (!errors.isEmpty()) {
@@ -50,7 +50,7 @@ router.post('/addfamily/', validators.familyCreate(),
       }
     });
 
-router.post('/editfamily/', validators.familyUpdate(),
+router.post('/editfamily/', validators.familyUpdate,
     async (req, res, next) => {
       const errors = check.validationResult(req);
       if (!errors.isEmpty()) {
