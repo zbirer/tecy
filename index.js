@@ -1,22 +1,22 @@
 
-var functions = require("firebase-functions")
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var logger = require('morgan');
+const functions = require('firebase-functions');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const logger = require('morgan');
 
-var indexRouter = require('./routes/family');
+const indexRouter = require('./routes/family');
 
-var app = express();
+const app = express();
 
 app.set('view engine', 'json');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(bodyParser.json())
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
