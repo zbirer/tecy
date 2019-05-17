@@ -9,10 +9,7 @@ async function userExists(collection, phone, email) {
       .where('email', '==', email.toLowerCase()).get();
   const numberDoc = await collection.where('phone_number', '==', phone).get();
 
-  if (!emailDoc.empty | !numberDoc.empty) {
-    return true;
-  }
-  return false;
+  return !emailDoc.empty || !numberDoc.empty;
 }
 
 module.exports = {
