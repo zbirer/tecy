@@ -12,6 +12,8 @@ async function userExists(collection, phone, email) {
   return !emailDoc.empty || !numberDoc.empty;
 }
 
+// TODO: use export default [ES6]
+
 module.exports = {
   userExists,
 };

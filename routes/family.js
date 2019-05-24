@@ -13,7 +13,7 @@ admin.initializeApp({
 const db = admin.firestore();
 const familiesCollection = db.collection('families');
 
-router.get('/', async (req, res, next) => {
+router.get('/', async (req, res) => {
   let snapshot;
   if (req.query.region) {
     snapshot = await familiesCollection
@@ -25,13 +25,15 @@ router.get('/', async (req, res, next) => {
 });
 
 router.post('/addfamily/', validators.familyCreate,
-    async (req, res, next) => {
+    async (req, res) => {
       const errors = check.validationResult(req);
       if (!errors.isEmpty()) {
         res.status(422).json({
           errors: errors.array(),
         });
       }
+
+      // TODO : it is a bad practice to use await in an if statement
 
       if (await utils.userExists(
           familiesCollection, req.body.phone_number, req.body.email)) {
@@ -51,7 +53,7 @@ router.post('/addfamily/', validators.familyCreate,
     });
 
 router.post('/editfamily/', validators.familyUpdate,
-    async (req, res, next) => {
+    async (req, res) => {
       const errors = check.validationResult(req);
       if (!errors.isEmpty()) {
         res.status(422).json({
