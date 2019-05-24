@@ -1,6 +1,7 @@
 import ReactDOM from "react-dom";
 import React from "react";
 import MainScreen from "./components/MainScreen/MainScreen";
+import "./public/css/index.scss";
 
 class Application extends React.PureComponent {
     constructor(props) {

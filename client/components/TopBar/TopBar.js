@@ -1,4 +1,5 @@
 import React from "react";
+import "./topBar.scss";
 
 const TOP_BAR_ITEMS = [
     "יצירת קשר",
@@ -17,11 +18,14 @@ export class TopBar extends React.PureComponent {
     render() {
         return (
             <div className={"topBar"}>
+                <div className={"topBar__logo"} />
+                <div className={"topBar__menu"}>
                 {
-                    TOP_BAR_ITEMS.map(item => {
-                        return <div className={"topBar__item"}>{item}</div>
+                    TOP_BAR_ITEMS.map((item, index) => {
+                        return <div className={"topBar__menu_item"} key={index}>{item}</div>
                     })
                 }
+                </div>
             </div>
         )
     }

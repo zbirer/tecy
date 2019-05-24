@@ -1,3 +1,27 @@
 .topBar {
+  height: 8rem;
+  width: 100%;
+  background-image: linear-gradient(to bottom, white 80%, transparent);
+
+  &__menu {
+    height: 2rem;
+    padding: 3rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    margin: 0 auto;
+
+    &_item {
+      display: inline-block;
+      font-size: 1.8rem;
+      transition: .5s all;
+      font-weight: 900;
+
+      &:hover {
+        color: blue;
+        cursor: pointer;
+      }
+    }
+  }
 
 }

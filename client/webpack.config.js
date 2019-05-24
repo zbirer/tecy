@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+
 module.exports = {
     entry: "./index.js",
     output: {
@@ -13,31 +14,28 @@ module.exports = {
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
-                },
+                }
             },
             {
                 test: /\.html$/,
-                use: [
-                    {
-                        loader: 'html-loader',
-                    },
-                ],
+                use: ['html-loader']
             },
             {
                 test: /\.scss$/,
+                use: ["style-loader", "css-loader", "sass-loader"]
+            },
+            {
+                test: /\.(png|jpe?g|gif|ttf)$/,
                 use: [
                     {
-                        loader: "style-loader" // creates style nodes from JS strings
-                    },
-                    {
-                        loader: "css-loader" // translates CSS into CommonJS
-                    },
-                    {
-                        loader: "sass-loader" // compiles Sass to CSS
+                        loader: 'file-loader',
+                        options: {
+                            name: '[path][name].[ext]',
+                        }
                     }
                 ]
             }
-        ],
+        ]
     },
     devServer: {
         contentBase: path.join(__dirname, 'public'),
@@ -48,6 +46,6 @@ module.exports = {
         new HtmlWebPackPlugin({
             template: './public/index.html',
             filename: './index.html',
-        }),
-    ],
+        })
+    ]
 };
