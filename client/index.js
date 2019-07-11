@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom";
 import React from "react";
-import MainScreen from "./components/MainScreen/MainScreen";
+import App from "./App";
 import "./public/css/index.scss";
 
 class Application extends React.PureComponent {
@@ -15,4 +15,4 @@ class Application extends React.PureComponent {
     }
 }
 
-ReactDOM.render(<MainScreen/>, document.getElementById("root"));
+ReactDOM.render(<App/>, document.getElementById("root"));

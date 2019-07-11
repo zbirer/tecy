@@ -1,5 +1,4 @@
 import React from "react";
-import TopBAr, {TopBar} from "./../TopBar/TopBar";
 import "./mainScreen.scss";
 
 export default class MainScreen extends React.PureComponent {
@@ -9,7 +8,6 @@ export default class MainScreen extends React.PureComponent {
 
     render() {
         return <div className={"mainScreen"}>
-            <TopBar />
             <div className={"mainScreen__message"}>
                 <h1 className={"mainScreen__message_header"}>!ברוכים הבאים לבית מארח</h1>
                 <p className={"mainScreen__message_content"}>האתר שלנו פותח את הלב בתקופות חירום למשפחות מאיזור הדרום<br/>שמעוניינות להתנתק קצת מהמציאות הקשה<br/>וליהנות משקט ומשלווה עד יחלוף זעם </p>
