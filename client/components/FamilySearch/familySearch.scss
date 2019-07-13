@@ -1,0 +1,103 @@
+$color1: rgba(212, 236, 236, 1);
+$color2: rgba(93, 64, 20, 1);
+$color3: rgba(98, 73, 62, 1);
+$color4: rgba(200, 193, 150, 1);
+$color5: rgba(174, 191, 87, 1);
+
+.container {
+  background: rgba(144, 144, 144, 0.7);
+  padding: 1rem;
+  width: 50rem;
+  margin: 5rem auto 0 auto;
+
+  .searchForm {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-row-gap: 80px;
+
+    justify-items: stretch;
+    align-items: stretch;
+
+    input {
+      padding: 8px;
+      border-radius: 9px;
+      width: 100px;
+      margin: 0 auto;
+      font-size: 4rem;
+      font-weight: bold;
+      text-align: center;
+      align-self: center;
+    }
+
+    .inputDesc {
+      text-align: right;
+      font-weight: bold;
+      color: aliceblue;
+      font-size: 4rem;
+    }
+
+    .checkboxForm {
+      grid-row: 3 / span 1;
+      grid-column: 1 / 5;
+      display: flex;
+      .checkbox {
+        -webkit-appearance: none;
+        height: 4rem;
+        width: 4rem;
+        background-color: #fafafa;
+        border: 1px solid #cacece;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+        padding: 9px;
+        border-radius: 3px;
+        display: inline-block;
+        position: relative;
+        left: 2.5rem;
+        &:checked {
+          background-color: #54b8fa8f;
+          border: 1px solid #adb8c0;
+          box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
+          color: #99a1a7;
+        }
+      }
+    }
+
+    .adults {
+      grid-row: 1 / span 1;
+      grid-column: 3 / span 2;
+    }
+
+    .adultsInput {
+      grid-row: 1 / span 1;
+      grid-column: 2 / span 1;
+    }
+
+    .childrenInput {
+      grid-row: 2 / span 1; 
+      grid-column: 2 / span 1;
+    }
+
+    .children {
+      grid-column: 3 / span 2;
+    }
+
+    .kosher {
+      grid-column: 4 / span 1;
+    }
+
+    .veg {
+      grid-column: 2 / span 1;
+    }
+
+    button { 
+      grid-row: 4 / span 1;
+      grid-column: 2 / span 2;
+      font-size: 5rem;
+      border: solid 0.2rem #ebf3f3;
+      border-radius: 1rem;
+      color: #f4f4f5;
+      background-color: #8ba4b6;
+    }
+  }
+}
