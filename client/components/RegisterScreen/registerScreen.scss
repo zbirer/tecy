@@ -1,0 +1,55 @@
+.registerScreen {
+
+    &__message {
+      background: rgba(144, 144, 144, .7);
+      padding: 1rem;
+      width: 45rem;
+      margin: 5rem auto 0 auto;
+      text-align: center;
+      color: #fff;
+  
+      &_content {
+        margin-top: 1rem;
+        font-size: 1.6rem;
+      }
+    }
+    &_input {
+      appearance: none;
+      background-color: none;
+      border: 1px solid ;
+      line-height: 0;
+      font-size: 17px;
+      width: 100%;
+      display: block;
+      box-sizing: border-box;
+      padding: 10px 15px;
+      border-radius: 60px;
+      font-weight: 100;
+      letter-spacing: 0.01em;
+      position: relative;
+      z-index: 1;
+      text-align: right;
+
+
+      &_header {
+        font-size: 2.4rem;
+      }
+
+      &_button {
+        margin-top: 35px;
+        background-color: white;
+        border: 1px solid;
+        line-height: 0;
+        font-size: 17px;
+        display: inline-block;
+        box-sizing: border-box;
+        padding: 20px 15px ;
+        border-radius: 60px;
+        font-weight: 100;
+        letter-spacing: 0.01em;
+        position: relative;
+        z-index: 1;
+      }
+    }
+  }
+  

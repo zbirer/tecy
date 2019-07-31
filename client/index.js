@@ -13,6 +13,7 @@ class Application extends React.PureComponent {
             <div>Hello</div>
         )
     }
+
 }
 
 ReactDOM.render(<App/>, document.getElementById("root"));
