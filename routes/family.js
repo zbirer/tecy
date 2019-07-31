@@ -43,10 +43,10 @@ router.post('/addfamily/', validators.familyCreate,
           'name': req.body.name,
           'address': req.body.address,
           'phone_number': req.body.phone_number,
-          'region': req.body.region,
-          'capacity': req.body.capacity,
-          'is_host': req.body.is_host,
-          'email': req.body.email.toLowerCase(),
+          'kosher': req.body.kohser,
+          'vegeterian': req.body.vegeterian,
+          'capacity_kids': req.body.capacity_kids,
+          'capacity_adults': req.body.capacity_adults,
         });
         res.status(201).send();
       }

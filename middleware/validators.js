@@ -6,18 +6,22 @@ const regionsEnum = [
   'NORTHERN', 'SOUTHERN', 'TEL-AVIV', 'CENTRAL', 'HAIFA', 'JERUSALEM', 'JUDEA',
 ];
 
+const foodEnum = [
+  'KOSHER'
+]
+
 const baseBody = [
   check.body('name').exists(),
   check.body('address').exists(),
-  check.body('region').isIn(regionsEnum),
-  check.body('capacity').isInt({
+  check.body('kosher').isBoolean(),
+  check.body('vegeterian').isBoolean(),
+  check.body('capacity_adults').isInt({
     gt: 0,
   }),
-  check.body('is_host').isBoolean(),
+  check.body('capacity_kids').isInt(),
 ];
 
 const familyCreate = [...baseBody,
-  check.body('email').isEmail(),
   check.body('phone_number').isLength({
     min: 9,
     max: 13,

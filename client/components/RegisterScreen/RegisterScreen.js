@@ -1,5 +1,4 @@
 import React from "react";
-import {TopBar} from "../TopBar/TopBar";
 import "./registerScreen.scss";
 
 const foodType = [
@@ -12,7 +11,8 @@ const inputMap = {
     'שם משפחה': 'text',
     'עיר\\ישוב מגורים': 'text',
     'כמות מבוגרים שניתן לארח': 'number',
-    'כמות הילדים שניתן לארח': 'number'
+    'כמות הילדים שניתן לארח': 'number',
+    'טלפון' : 'text'
 };
 
 export default class RegisterScreen extends React.PureComponent {
@@ -23,7 +23,7 @@ export default class RegisterScreen extends React.PureComponent {
 
     sendForm(event) {
         event.preventDefault();
-        console.log(event);
+        console.log(event.target);
     }
 
     render() {
