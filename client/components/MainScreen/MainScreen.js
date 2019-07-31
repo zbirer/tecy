@@ -19,7 +19,7 @@ class MainScreen extends React.PureComponent {
                 <p className={"mainScreen__message_content"}>האתר שלנו פותח את הלב בתקופות חירום למשפחות מאיזור הדרום<br/>שמעוניינות להתנתק קצת מהמציאות הקשה<br/>וליהנות משקט ומשלווה עד יחלוף זעם </p>
                 <div className={"mainScreen_message_buttons"}>
                     <button className={"mainScreen__message_buttons_button"} onClick={this.redirect('search')}>אפשר להתארח?</button>
-                    <button className={"mainScreen__message_buttons_button"}>רוצה לארח</button>
+                    <button className={"mainScreen__message_buttons_button"} onClick={this.redirect('register')}>רוצה לארח</button>
                 </div>
             </div>
         </div>
