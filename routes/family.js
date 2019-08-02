@@ -33,8 +33,6 @@ router.post('/addfamily/', validators.familyCreate,
         });
       }
 
-      // TODO : it is a bad practice to use await in an if statement
-
       if (await utils.userExists(
           familiesCollection, req.body.phone_number, req.body.email)) {
         res.status(409).send();
@@ -43,8 +41,8 @@ router.post('/addfamily/', validators.familyCreate,
           'name': req.body.name,
           'address': req.body.address,
           'phone_number': req.body.phone_number,
-          'kosher': req.body.kohser,
-          'vegeterian': req.body.vegeterian,
+          'kosher': req.body.kosher,
+          'vegetarian': req.body.vegetarian,
           'capacity_kids': req.body.capacity_kids,
           'capacity_adults': req.body.capacity_adults,
         });
