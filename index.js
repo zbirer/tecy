@@ -11,11 +11,21 @@ const app = express();
 
 app.set('view engine', 'json');
 
+const cors = ((req, res, next) => {
+  res.set({ 'Access-Control-Allow-Origin': '*' })
+  res.set({ 'Access-Control-Allow-Credentials' : 'true' })
+  res.set({ 'Access-Control-Allow-Methods': 'GET,HEAD,OPTIONS,POST,PUT' })
+  res.set({ 'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers' })
+
+  next();
+})
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
+app.use(cors)
 
 app.use('/', indexRouter);
 

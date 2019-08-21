@@ -6,15 +6,11 @@ const regionsEnum = [
   'NORTHERN', 'SOUTHERN', 'TEL-AVIV', 'CENTRAL', 'HAIFA', 'JERUSALEM', 'JUDEA',
 ];
 
-const foodEnum = [
-  'KOSHER'
-]
-
 const baseBody = [
   check.body('name').exists(),
   check.body('address').exists(),
-  check.body('kosher').isBoolean(),
-  check.body('vegeterian').isBoolean(),
+  check.body('kosher').isBoolean().optional(),
+  check.body('vegeterian').isBoolean().optional(),
   check.body('capacity_adults').isInt({
     gt: 0,
   }),
@@ -29,7 +25,6 @@ const familyCreate = [...baseBody,
 ];
 
 const familyUpdate = [...baseBody, check.header('token').exists()];
-
 
 module.exports = {
   familyCreate,

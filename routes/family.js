@@ -33,16 +33,15 @@ router.post('/addfamily/', validators.familyCreate,
         });
       }
 
-      if (await utils.userExists(
-          familiesCollection, req.body.phone_number, req.body.email)) {
+      if (await utils.userExists(familiesCollection, req.body.phone_number)) {
         res.status(409).send();
       } else {
         await familiesCollection.add({
           'name': req.body.name,
           'address': req.body.address,
           'phone_number': req.body.phone_number,
-          'kosher': req.body.kosher,
-          'vegetarian': req.body.vegetarian,
+          'kosher': req.body.kosher ? true : false,
+          'vegetarian': req.body.vegetarian ? true : false,
           'capacity_kids': req.body.capacity_kids,
           'capacity_adults': req.body.capacity_adults,
         });
@@ -50,6 +49,7 @@ router.post('/addfamily/', validators.familyCreate,
       }
     });
 
+//For now this is outdated... please don't use this endpoint.
 router.post('/editfamily/', validators.familyUpdate,
     async (req, res) => {
       const errors = check.validationResult(req);

@@ -1,15 +1,6 @@
-/* eslint-disable require-jsdoc */
-/* eslint-disable valid-jsdoc */
-async function userExists(collection, phone, email) {
-  // Two unique fields, checked for existance.
-  // There is no way in firebase to do a logical OR operation.
-  // https://firebase.google.com/docs/firestore/query-data/queries
-
-  const emailDoc = await collection
-      .where('email', '==', email.toLowerCase()).get();
+async function userExists(collection, phone) {
   const numberDoc = await collection.where('phone_number', '==', phone).get();
-
-  return !emailDoc.empty || !numberDoc.empty;
+  return !numberDoc.empty;
 }
 
 // TODO: use export default [ES6]
