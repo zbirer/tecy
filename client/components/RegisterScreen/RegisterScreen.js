@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import './registerScreen.scss';
 
 const FirbaseApi = require('../FirebaseApi')
