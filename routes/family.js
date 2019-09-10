@@ -17,57 +17,87 @@ router.get('/', async (req, res) => {
   let snapshot;
   if (req.query.region) {
     snapshot = await familiesCollection
-        .where('region', '==', req.query.region).get();
+      .where('region', '==', req.query.region).get();
   } else {
     snapshot = await familiesCollection.get();
   }
+
   res.send(snapshot.docs.map((doc) => doc.data()));
 });
 
 router.post('/addfamily/', validators.familyCreate,
-    async (req, res) => {
-      const errors = check.validationResult(req);
-      if (!errors.isEmpty()) {
-        res.status(422).json({
-          errors: errors.array(),
-        });
-      }
+  async (req, res) => {
+    const familyToCreate = req.body.data;
+    const errors = check.validationResult(familyToCreate);
+    if (!errors.isEmpty()) {
+      res.status(422).json({
+        errors: errors.array(),
+      });
+    }
 
-      if (await utils.userExists(familiesCollection, req.body.phone_number)) {
-        res.status(409).send();
-      } else {
-        await familiesCollection.add({
-          'name': req.body.name,
-          'address': req.body.address,
-          'phone_number': req.body.phone_number,
-          'kosher': req.body.kosher ? true : false,
-          'vegetarian': req.body.vegetarian ? true : false,
-          'capacity_kids': req.body.capacity_kids,
-          'capacity_adults': req.body.capacity_adults,
-        });
-        res.status(201).send();
-      }
-    });
+    if (await utils.userExists(familiesCollection, familyToCreate.phone_number)) {
+      res.status(409).json({
+        data: {
+          status: "exists"
+        }
+      }).send();
+    } else {
+      await familiesCollection.add({
+        'name': familyToCreate.name,
+        'address': familyToCreate.address,
+        'phone_number': familyToCreate.phone_number,
+        'kosher': familyToCreate.kosher ? true : false,
+        'vegetarian': familyToCreate.vegetarian ? true : false,
+        'capacity_kids': parseInt(familyToCreate.capacity_kids),
+        'capacity_adults': parseInt(familyToCreate.capacity_adults),
+      });
+      res.status(201).json({
+        data: {
+          status: "created"
+        }
+      }).send();
+    }
+  });
+
+router.post('/searchfamily', async (req, res) => {
+  let { adults, children, isKosher, isVeg } = req.body.data;
+  let dbSnapshot = await familiesCollection
+    .orderBy("capacity_adults")
+    .where("capacity_adults", ">=", adults)
+    .limit(50)
+    .get();
+  families = dbSnapshot.docs.map((doc) => doc.data());
+  families = families.filter(family => {
+    valid = (family.capacity_kids >= children);
+    if (isKosher) valid &= family.kosher;
+    if (isVeg) valid &= family.vegetarian;
+    return valid;
+  }
+  );
+  res.send({
+    data: families
+  });
+})
 
 //For now this is outdated... please don't use this endpoint.
 router.post('/editfamily/', validators.familyUpdate,
-    async (req, res) => {
-      const errors = check.validationResult(req);
-      if (!errors.isEmpty()) {
-        res.status(422).json({
-          errors: errors.array(),
-        });
-      }
-
-      // We use a "Token" here to mock the behaviour of authentication.
-      await familiesCollection.doc(req.headers.token).update({
-        'name': req.body.name,
-        'address': req.body.address,
-        'region': req.body.region,
-        'capacity': req.body.capacity,
-        'is_host': req.body.is_host,
+  async (req, res) => {
+    const errors = check.validationResult(req);
+    if (!errors.isEmpty()) {
+      res.status(422).json({
+        errors: errors.array(),
       });
-      res.status(200).send();
+    }
+
+    // We use a "Token" here to mock the behaviour of authentication.
+    await familiesCollection.doc(req.headers.token).update({
+      'name': req.body.name,
+      'address': req.body.address,
+      'region': req.body.region,
+      'capacity': req.body.capacity,
+      'is_host': req.body.is_host,
     });
+    res.status(200).send();
+  });
 
 module.exports = router;

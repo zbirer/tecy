@@ -4,7 +4,6 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
-
 const indexRouter = require('./routes/family');
 
 const app = express();

@@ -1,0 +1,28 @@
+.modal {
+    margin: 0 auto;
+}
+
+.display {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.hide {
+    display: none;
+}
+
+.familyBox {
+    direction: rtl;
+    width: 17rem;
+    height: 15rem;
+    margin: 1.3rem;
+    border-radius: 1.2rem;
+    background-color: #daecec;
+    font-size: 1.7rem;
+    text-align: center;
+    
+    .familyName {
+        font-weight: bold;
+    }
+}
