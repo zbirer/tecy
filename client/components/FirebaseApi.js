@@ -1,15 +1,6 @@
 import firebase from 'firebase'
 
-const config = {
-    "projectId": "families-hosting",
-    "appId": "1:175187365155:web:638b6ebd4e3f8871",
-    "databaseURL": "https://families-hosting.firebaseio.com",
-    "storageBucket": "families-hosting.appspot.com",
-    "locationId": "europe-west",
-    "apiKey": "AIzaSyCRrVHLqoQRHM8wX5VaBdwtWID2cYFXTdM",
-    "authDomain": "families-hosting.firebaseapp.com",
-    "messagingSenderId": "175187365155"
-  }
+const config = /*FIREBASECONFIG*/
 
   firebase.initializeApp(config);
 
