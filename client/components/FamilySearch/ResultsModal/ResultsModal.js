@@ -1,41 +1,58 @@
 import React from 'react'
 import './resultsModal.scss'
 import { isArray } from 'util';
+import FamilyBox from "./FamilyBox/FamilyBox"
 
-export default function ResultsModal(props) {
-    const modalDisplayClass = props.show ? 'modal display' : 'modal hide';
-
-    if (isArray(props.families)) {
-        const families = props.families;
-        if (families.length > 0) {
-            return (
-                <div className={modalDisplayClass}>
-                    {
-                        families.map((family, index) => {
-                            return (
-                                <div className="familyBox">
-                                    <span className="familyName">  משפחת {family.name} </span>
-                                    <br />
-                                    {family.address}
-                                    <br /><br />
-                                    {family.kosher ? "אוכל כשר" : "אוכל לא כשר"}
-                                    <br />
-                                    {family.vegetarian ? "אוכל צמחוני" : "אוכל לא צמחוני"}
-                                </div>
-                            )
-                        })
-                    }
-                </div>
-            )
-        } else {
-            return (
-                <div className={modalDisplayClass}>
-                    לא נמצאו משפחות מתאימות
-            </div>
-            )
-        }
+export default class ResultsModal extends React.PureComponent {
+    constructor(props) {
+        super(props);
+        this.state = {
+            families: props.families,
+            show: props.show,
+            toggleShow: props.toggleShow
+        };
     }
-    return (
-        <div></div>
-    )
+
+    componentWillReceiveProps(props) {
+        this.setState({
+            families: props.families,
+            show: props.show
+        });
+    }
+
+    render() {
+        const modalDisplayClass = this.state.show ? 'display' : 'hide';
+        if (isArray(this.state.families)) {
+            const families = this.state.families;
+            if (families.length > 0) {
+                return (
+                    <div className={modalDisplayClass}>
+                        <div className="modal">
+                            <ul>
+                                {
+                                    families.map((currFamily, index) => {
+                                        return (
+                                            <li>
+                                                <FamilyBox family={currFamily}></FamilyBox>
+                                            </li>
+                                        )
+                                    })
+                                }
+                            </ul>
+                        </div>
+                        <button className="returnBtn" type="submit" value="Submit" onClick={this.state.toggleShow}>חיפוש חדש</button>
+                    </div>
+                )
+            } else {
+                return (
+                    <div className={modalDisplayClass}>
+                        לא נמצאו משפחות מתאימות
+                    </div>
+                )
+            }
+        }
+        return (
+            <div></div>
+        )
+    }
 }

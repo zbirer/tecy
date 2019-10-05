@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const admin = require('firebase-admin');
-const check = require('express-validator/check');
+const {validationResult} = require('express-validator/check');
 
 const serviceAccount = require('../resources/creds.json');
 const validators = require('../middleware/validators');
@@ -27,14 +27,14 @@ router.get('/', async (req, res) => {
 
 router.post('/addfamily/', validators.familyCreate,
   async (req, res) => {
-    const familyToCreate = req.body.data;
-    const errors = check.validationResult(familyToCreate);
+    const errors = validationResult(req);
     if (!errors.isEmpty()) {
       res.status(422).json({
         errors: errors.array(),
       });
     }
 
+    const familyToCreate = req.body.data;
     if (await utils.userExists(familiesCollection, familyToCreate.phone_number)) {
       res.status(409).json({
         data: {
@@ -82,7 +82,7 @@ router.post('/searchfamily', async (req, res) => {
 //For now this is outdated... please don't use this endpoint.
 router.post('/editfamily/', validators.familyUpdate,
   async (req, res) => {
-    const errors = check.validationResult(req);
+    const errors = validationResult(req);
     if (!errors.isEmpty()) {
       res.status(422).json({
         errors: errors.array(),

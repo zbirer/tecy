@@ -1,28 +1,50 @@
 .modal {
     margin: 0 auto;
+    height: 70rem;
+    overflow-y: scroll;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 2rem;
 }
 
 .display {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: block;
 }
 
 .hide {
     display: none;
 }
 
+ul {
+    width: 100%;
+}
+
 .familyBox {
     direction: rtl;
-    width: 17rem;
     height: 15rem;
     margin: 1.3rem;
     border-radius: 1.2rem;
     background-color: #daecec;
     font-size: 1.7rem;
     text-align: center;
-    
+    list-style: none;
+
     .familyName {
         font-weight: bold;
     }
 }
+
+.returnBtn { 
+    font-size: 5rem;
+    border: solid 0.2rem #ebf3f3;
+    border-radius: 1rem;
+    color: #f4f4f5;
+    background-color: #8ba4b6;
+    display: block;
+    margin: 0 auto;
+    &:hover {
+        cursor: pointer;
+        background-color: #a9c8df;
+        transition: background-color 0.2s ease-in-out;
+    }
+  }

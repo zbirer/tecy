@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const indexRouter = require('./routes/family');
+const expressValidator = require('express-validator');
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(cors)
+app.use(expressValidator());
 
 app.use('/', indexRouter);
 

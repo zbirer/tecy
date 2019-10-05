@@ -98,6 +98,11 @@ $color5: rgba(174, 191, 87, 1);
       border-radius: 1rem;
       color: #f4f4f5;
       background-color: #8ba4b6;
+      &:hover {
+        cursor: pointer;
+        background-color: #a9c8df;
+        transition: background-color 0.2s ease-in-out;
+    }
     }
   }
 }

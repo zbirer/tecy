@@ -1,4 +1,4 @@
-const check = require('express-validator/check');
+const {header, body} = require('express-validator/check');
 
 // Enum representation of the 7 districs of israel, taken from: https://en.wikipedia.org/wiki/Districts_of_Israel
 // CLDR only offers 6 districts. https://unicode.org/cldr/charts/latest/supplemental/territory_subdivisions.html
@@ -7,26 +7,34 @@ const regionsEnum = [
 ];
 
 const baseBody = [
-  check.body('name').exists(),
-  check.body('address').exists(),
-  check.body('kosher').isBoolean().optional(),
-  check.body('vegeterian').isBoolean().optional(),
-  check.body('capacity_adults').isInt({
+  body('data.name').exists(),
+  body('data.address').exists(),
+  body('data.kosher').isBoolean().optional(),
+  body('data.vegeterian').isBoolean().optional(),
+  body('data.capacity_adults').isInt({
     gt: 0,
   }),
-  check.body('capacity_kids').isInt(),
+  body('data.capacity_kids').isInt(),
 ];
 
 const familyCreate = [...baseBody,
-  check.body('phone_number').isLength({
+  body('data.phone_number').isLength({
     min: 9,
     max: 13,
   }).isNumeric(),
 ];
 
-const familyUpdate = [...baseBody, check.header('token').exists()];
+const familySearch = [
+  body('data.adults').isNumeric(),
+  body('data.children').isNumeric(),
+  body('data.isKosher').isBoolean(),
+  body('data.isVeg').isBoolean()
+];
+
+const familyUpdate = [...baseBody, header('token').exists()];
 
 module.exports = {
+  familySearch,
   familyCreate,
   familyUpdate,
 };

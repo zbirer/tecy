@@ -1,0 +1,25 @@
+.familyBox {
+    direction: rtl;
+    height: 15rem;
+    margin: 1.3rem;
+    border-radius: 1.2rem;
+    background-color: #daecec;
+    font-size: 1.7rem;
+    text-align: center;
+    list-style: none;
+
+    .boxHeader {
+        font-weight: bold;
+        font-size: 3rem;
+    }
+
+    &:hover {
+        cursor: pointer;
+        background-color: #b9fbfb;
+        transition: background-color 0.2s ease-in-out;
+    }
+}
+
+.phoneNumber {
+    font-size: 3rem;
+}
