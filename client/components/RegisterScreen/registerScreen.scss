@@ -59,6 +59,10 @@
         z-index: 1;
       }
     }
+
+    .inputError {
+      border: 2px solid red;
+    }
   }
 
 .successMessage {

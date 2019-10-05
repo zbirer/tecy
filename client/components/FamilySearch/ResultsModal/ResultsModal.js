@@ -46,7 +46,8 @@ export default class ResultsModal extends React.PureComponent {
             } else {
                 return (
                     <div className={modalDisplayClass}>
-                        לא נמצאו משפחות מתאימות
+                        <span className="noFoundMsg">לא נמצאו משפחות מתאימות</span>
+                        <button className="returnBtn" type="submit" value="Submit" onClick={this.state.toggleShow}>חיפוש חדש</button>
                     </div>
                 )
             }

@@ -31,7 +31,9 @@ router.post('/addfamily/', validators.familyCreate,
     if (!errors.isEmpty()) {
       res.status(422).json({
         errors: errors.array(),
-      });
+      }).send();
+
+      return;
     }
 
     const familyToCreate = req.body.data;
@@ -59,7 +61,17 @@ router.post('/addfamily/', validators.familyCreate,
     }
   });
 
-router.post('/searchfamily', async (req, res) => {
+router.post('/searchfamily', validators.familySearch,
+ async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    res.status(422).json({
+      errors: errors.array(),
+    }).send();
+    
+    return;
+  }
+
   let { adults, children, isKosher, isVeg } = req.body.data;
   let dbSnapshot = await familiesCollection
     .orderBy("capacity_adults")

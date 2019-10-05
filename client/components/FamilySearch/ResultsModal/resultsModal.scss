@@ -48,3 +48,10 @@ ul {
         transition: background-color 0.2s ease-in-out;
     }
   }
+
+  .noFoundMsg {
+      display: block;
+      text-align: center;
+      font-size: 4rem;
+      margin-bottom: 2rem;
+  }

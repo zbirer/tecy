@@ -18,10 +18,7 @@ const baseBody = [
 ];
 
 const familyCreate = [...baseBody,
-  body('data.phone_number').isLength({
-    min: 9,
-    max: 13,
-  }).isNumeric(),
+  body('data.phone_number').matches(/^0\d([\d]{0,1})([-]{0,1})\d{7}$/)
 ];
 
 const familySearch = [

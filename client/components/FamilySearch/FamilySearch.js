@@ -22,10 +22,11 @@ export default class FamilySearch extends React.PureComponent {
             isKosher: false,
             isVeg: false,
             availableFamilies: {},
-            formErrors: {
-                adultsNum: "",
-                childrenNum: ""
-            },
+            adultsNumError: "",
+            childrenNumError: "",
+            nameError: "",
+            townError: "",
+            phoneError:"",
             isAdultsNumValid: false,
             isChildrenNumValid: false
         };
